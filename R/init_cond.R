@@ -19,9 +19,9 @@ generate_init_condi <- function(r0,
   ## realData     : real data from the CDC
   R0 <- 0
   H0 <- 27
-  realData <- read.csv("../data/Covid19CasesWH_simulated_Jan1-Feb29.csv", row.names = 1)[-c(1:24), ]
-  realData_all <- read.csv("../data/Covid19CasesWH_simulated_Jan1-Feb29.csv", row.names = 1)  # the 25th row correspond to 1 Jan
   
+  realData_all <- read.csv("../data/Covid19CasesWH.csv", row.names = 1)  
+  realData <- realData_all[-c(1:24), ] # the 25th row correspond to 1 Jan
   jan1_idx = 25
   
   #cases from Jan 1 to Feb 29
