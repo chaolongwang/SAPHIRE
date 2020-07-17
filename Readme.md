@@ -2,7 +2,7 @@
 
 This repository includes data and codes for reproducing the results in the manuscript:
 
-Hao X, Cheng S, Wu D, Wu T, Lin X, and Wang C (2020). Reconstruction of the full transmission of COVID-19 in Wuhan. **Nature**, (accepted in princple)
+Hao X, Cheng S, Wu D, Wu T, Lin X, and Wang C (2020). Reconstruction of the full transmission of COVID-19 in Wuhan. **Nature**, doi: 10.1038/s41586-020-2554-8.
 
 In the following sections, we will describe the purposes of each major directory and the scripts in that folder. **One should keep in mind that the scripts and data here are meant for reproduction of the results in the paper only.** Scripts were run on R-3.6.x.
 
