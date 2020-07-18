@@ -1,7 +1,7 @@
-## IMPORTANT: set code_root properly!
-# code_root="/home/dgwu/covid19/NatSEIR_Rcode/"
-code_root="~/jianguoyun/Nutstore/covid19/NatSEIR_Rcode/"
-# code_root="C:/Users/xingj/Documents/WangLabAdmin/COVID-19/NatSEIR_Rcode/"
+## IMPORTANT: Please set code_root variable properly. 
+## code_root should be set to the directory where the repository README file is located. 
+## For more information, please read the repository README file
+code_root="~/SAPHIRE/"
 
 setwd(paste0(code_root, "scripts_main"))
 library(BayesianTools)
@@ -30,5 +30,5 @@ SEIRfitting(init_sets_list, randomize_startValue = T,
             run_id = "main_analysis", output_ret = T, skip_MCMC=F)
 
 ## to evaluate convergence, we run another two rounds of this program
-# SEIRfitting(init_sets_list, randomize_startValue = T, run_id = "main_analysis_rep1", output_ret = T, skip_MCMC=F)
-# SEIRfitting(init_sets_list, randomize_startValue = T, run_id = "main_analysis_rep2", output_ret = T, skip_MCMC=F)
+SEIRfitting(init_sets_list, randomize_startValue = T, run_id = "main_analysis_rep1", output_ret = T, skip_MCMC=F)
+SEIRfitting(init_sets_list, randomize_startValue = T, run_id = "main_analysis_rep2", output_ret = T, skip_MCMC=F)

@@ -2,11 +2,25 @@
 
 This repository includes data and codes for reproducing the results in the manuscript:
 
-Hao X, Cheng S, Wu D, Wu T, Lin X, and Wang C (2020). Reconstruction of the full transmission of COVID-19 in Wuhan. **Nature**, doi: 10.1038/s41586-020-2554-8.
+Hao X, Cheng S, Wu D, Wu T, Lin X, and Wang C (2020). Reconstruction of the full transmission of COVID-19 in Wuhan. **Nature**, doi: 10.1038/s41586-020-2554-8. 
 
-In the following sections, we will describe the purposes of each major directory and the scripts in that folder. **One should keep in mind that the scripts and data here are meant for reproduction of the results in the paper only.** Scripts were run on R-3.6.x.
+[Link]: https://www.nature.com/articles/s41586-020-2554-8
 
+In the following sections, we will describe the purposes of each major directory and the scripts in that folder. **One should keep in mind that the scripts and data here are meant for reproduction of the results in the paper only.** Scripts were tested on R-3.6.x.
 
+**We encourage you to raise purely technical questions through Github issues so that we can answer your questions ASAP.**
+
+### Prerequisite third-party R packages
+
+You may need to install the following R packages if you have not done so yet:
+
+- BayesianTools
+- coda
+- cairoDevice
+- vioplot
+- readr
+- corrplot
+- IDPmisc
 
 ### Descriptions of folders, scripts and other files
 
@@ -14,11 +28,11 @@ Scripts in folders `scripts_main`, `scripts_resurgence`  and `scripts_sensitivit
 
 #### Folder `scripts_main `
 
-R scripts for our main analyses. Since we constantly need to use functions defined in `R` directory and previous outputs located at `output` directory, it is necessary to set the `code_root` variable at the beginning of the script properly. `code_root` should be set to the directory under which this README file is located. `code_root` should ends with `/`. The same applies to other scripts that are meant to be directly run by users.
+R scripts for our main analyses. Since we constantly need to use functions defined in `R` directory and previous outputs located at `output` directory, it is necessary to set the `code_root` variable at the beginning of the script properly. `code_root` should be set to the directory under which this README file is located. `code_root` should ends with `/`. The same applies to other scripts that are meant to be directly run by users. For example, suppose you have git cloned SAPHIRE at `/home/Sarah/SAPHIRE` and this `Readme.md` file is at `/home/Sarah/SAPHIRE`, then `code_root`  variable should be set to `/home/Sarah/SAPHIRE/`.
 
-- `Run_SEIR_main_analysis.R`: R script to reproduce the main analyses (**Fig. 2**). This R script will call `SEIRfitting` function to perform the analysis. After the run, please first inspect `output/par_traj_run_main_analysis.png`  visually to make sure the MCMC run has converged. If convergence has not been achieved, rerun the script with different random seeds, or specify a good initial parameter values.
+- `Run_SEIR_main_analysis.R`: R script to reproduce the main analyses (**Fig. 2**). This R script will call `SEIRfitting` function to perform the analysis. **After the run, please first inspect `output/par_traj_run_main_analysis.png`  visually to make sure the MCMC run has converged.** If convergence has not been achieved, rerun the script with different random seeds, or specify a good initial parameter values.
 
-- `confirm_convergence.R`:  Confirm and test convergence of MCMC by comparing three independent runs. This script will reproduce **Supplementary Fig. 10**.
+- `confirm_convergence.R`:  Confirm and test convergence of MCMC by comparing three independent runs. This script will reproduce **Supplementary Fig. 10**. **This requires output from `Run_SEIR_main_analysis.R` . Run  `Run_SEIR_main_analysis.R`  first before running this script.**
 
 
 
@@ -26,11 +40,11 @@ R scripts for our main analyses. Since we constantly need to use functions defin
 
 R scripts for risk of resurgence estimations.
 
-- `Run_resurge_simulation.R`: R script to run the risk of resurgence estimations after control measures is lifted using the parameters from the main and sensitivity s8 analyses.
+- `Run_resurge_simulation.R`: R script to run the risk of resurgence estimations after control measures is lifted using the parameters from the main and sensitivity s8 analyses. **This requires output from `scripts_main/Run_SEIR_main_analysis.R` and `scripts_sensitivity/Run_SEIR_s8.R`. Run  `Run_SEIR_main_analysis.R` and `scripts_sensitivity/Run_SEIR_s8.R` first before running this script.**
 
-- `Run_resurge_plot_fig3_A.R`: R script to reproduce **Fig. 3A**.
+- `Run_resurge_plot_fig3_A.R`: R script to reproduce **Fig. 3A**. **This requires output from `scripts_main/Run_SEIR_main_analysis.R` and `Run_resurge_simulation.R`.**
 
-- `Run_resurge_plot_fig3_BC.R`: R script to reproduce **Fig. 3B/C**.
+- `Run_resurge_plot_fig3_BC.R`: R script to reproduce **Fig. 3B/C**. **This requires output from `scripts_sensitivity/Run_SEIR_s8.R` and `Run_resurge_simulation.R`.**
 
 
 
