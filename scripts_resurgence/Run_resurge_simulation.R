@@ -1,6 +1,8 @@
 rm(list = ls())
-##
-code_root="C:/Users/xingj/Documents/WangLabAdmin/COVID-19/NatSEIR_Rcode/"
+## IMPORTANT: Please set code_root variable properly. 
+## code_root should be set to the directory where the repository README file is located. 
+## For more information, please read the repository README file
+code_root="~/SAPHIRE/"
 setwd(paste0(code_root, "scripts_resurgence"))
 ##
 source(paste0(code_root, "R/fun_SEIRresurge.R"))
@@ -9,6 +11,17 @@ source(paste0(code_root, "R/init_cond.R"))
 
 ##   main models
 init_sets_list <- get_init_sets_list(r0 = 0.23)
+
+if (!file.exists("../output/pars_est_run_main_analysis.txt")) {
+  stop("Outputs from main analysis cannot be found.\n
+      Probably scripts_main/Run_SEIR_main_analysis.R has not yet been run or code_root is not set correctly.")
+}
+
+if (!file.exists("../output/pars_est_run_s8.txt")) {
+  stop("Outputs from sensitivity model 8 cannot be found.\n
+      Probably scripts/Run_SEIR_s8.R has not yet been run or code_root is not set correctly.")
+}
+
 pars_est_dat <- read.table("../output/pars_est_run_main_analysis.txt", header = T)
 pars_est_dat <- as.matrix(tail(pars_est_dat, 10000))
 ##
@@ -61,11 +74,3 @@ for(days_num in 1:30) {
 
 write.table(type_1_date_mat, "../output/simu_s8_resurgence_date_type_1_lift.txt", quote = F, row.names = F, col.names = T, sep = "\t")
 write.table(type_2_date_mat, "../output/simu_s8_resurgence_date_type_2_lift.txt", quote = F, row.names = F, col.names = T, sep = "\t")
-
-
-
-
-
-
-
-

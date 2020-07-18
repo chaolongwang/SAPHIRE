@@ -1,0 +1,1 @@
+This folder stores various output files from various scripts.

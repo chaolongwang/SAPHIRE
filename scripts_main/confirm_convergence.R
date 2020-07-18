@@ -1,8 +1,21 @@
+rm(list = ls())
+## IMPORTANT: Please set code_root variable properly. 
+## code_root should be set to the directory where the repository README file is located. 
+## For more information, please read the repository README file
+code_root="~/SAPHIRE/"
+
+setwd(paste0(code_root, "scripts_main"))
+
 library(readr)
 library(coda)
 library(cairoDevice)
 
-setwd("~/jianguoyun/Nutstore/covid19/SEIRcode/scripts_main")
+if (!file.exists("../output/pars_est_run_main_analysis.txt") | 
+    !file.exists("../output/pars_est_run_main_analysis_rep1.txt") |
+    !file.exists("../output/pars_est_run_main_analysis_rep2.txt")) {
+  stop("Outputs from main analysis cannot be found.\n
+      Probably scripts_main/Run_SEIR_main_analysis.R has not yet been run or code_root is not set correctly.")
+}
 
 pars_estimate_main=read.table("../output/pars_est_run_main_analysis.txt", header=T)
 pars_estimate_main_rep1=read.table("../output/pars_est_run_main_analysis_rep1.txt", header=T)
